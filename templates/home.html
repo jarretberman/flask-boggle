@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>HOME PAGE</h1>
+<table>
+{% for list in board %}
+    <tr>
+        {% for char in list %}
+            <td>{{char}}</td>
+        {% endfor%}
+    </tr>
+{% endfor %}
+</table>
+<form method = 'post' id ='word_submit'>
+    <label>Check A Word</label>
+    <input type="text" name="word" id="word">
+    <button>Submit</button>
+</form>
+
+{% endblock %}
