@@ -1,13 +1,30 @@
 class BoggleGame {
-    constructor(){
+    constructor(time = 60){
         this.checked = new Set()
         this.score = 0
         this.found = new Set()
-        $('#submit').on('submit', this.handle_word_submit(evt).bind(this))
+        this.secs = time
+        this.timer = setInterval(this.count.bind(this),1000)
+        $('#checkWord').on('click', this.handle_word_submit.bind(this))
+        $('#timer').text(`${this.secs}`)
+        $('#score').text(`${this.score}`)
     }
     static create_boggle(){
         const game = new BoggleGame
         return game
+    }
+    count() {
+        this.secs--
+        $('#timer').text(`${this.secs}`)
+        if(this.secs == 0){
+            clearInterval(this.timer)
+            this.gameOver()
+        }
+    }
+    gameOver() {
+        $('#gameContainer').empty()
+        $('#gameContainer') .append(`<p>You Scored ${this.score} points!</p>`)
+                            .append(`<a href= "/play">Click here to Play Again</a>`)
     }
 
     async check_word(word){
@@ -35,10 +52,10 @@ class BoggleGame {
         
         const bool = await this.check_word(word)
         if(this.determine_score(bool,word)){
-            $('#msg').text('Good Job!')
+            $('#msg').text(`Good Job! You got ${word.length} points!` )
             $('#found').append(`<li>${word}`)
         } else {
-            $(`Sorry '${word}' isn't on the board`)
+            $('#msg').text(`Sorry '${word}' isn't on the board`)
         }
     }
 
@@ -46,6 +63,7 @@ class BoggleGame {
         if(bool){
             this.found.add(word)
             this.score += word.length
+            $('#score').text(`${this.score}`)
             return true
         }
         return false

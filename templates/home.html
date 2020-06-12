@@ -12,15 +12,17 @@
     </tr>
 {% endfor %}
 </table>
-<form id ='word_submit'></form>
+<div id="gameContainer">
+<form id ='word_form'></form>
     <label>Check A Word</label>
     <input type="text" name="word" id="word">
-    <input type="submit" id="submit" value="Check Word">
+    <button id="checkWord">Check Word</button>
 </form>
+<p id="score">0</p><p id="timer"></p>
 <p id = 'msg'>Let's Play Boggle!</p>
 <ul id ="found">
 </ul>
-
+</div>
 {% endblock %}
 {%block scripts%}
 <script>let game = new BoggleGame </script>
