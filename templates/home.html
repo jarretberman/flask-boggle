@@ -12,10 +12,16 @@
     </tr>
 {% endfor %}
 </table>
-<form method = 'post' id ='word_submit'>
+<form id ='word_submit'></form>
     <label>Check A Word</label>
     <input type="text" name="word" id="word">
-    <button>Submit</button>
+    <input type="submit" id="submit" value="Check Word">
 </form>
+<p id = 'msg'>Let's Play Boggle!</p>
+<ul id ="found">
+</ul>
 
 {% endblock %}
+{%block scripts%}
+<script>let game = new BoggleGame </script>
+{%endblock%}

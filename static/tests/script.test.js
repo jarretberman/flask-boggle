@@ -19,6 +19,7 @@ describe('axios tests for BoggleAJAX class', () =>{
         const test = await boggle.check_word('zxywe')
 
         expect(typeof test).toEqual('boolean')
-        expect(boggle.checked.length).toEqual(0)
+        expect(boggle.checked.length).toEqual(1)
     })
+
 }) 
